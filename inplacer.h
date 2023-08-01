@@ -12,10 +12,6 @@
 extern "C" {
 #endif
 
-#ifdef __cplusplus
-}
-#endif
-
 /*
  * Base64 encoding/decoding (RFC1341)
  * Copyright (c) 2005-2011, Jouni Malinen <j@w1.fi>
@@ -156,4 +152,7 @@ static void inplacer_inplace(void *data, size_t size, FILE *log){
     }
 }
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* end of include guard: INPLACER_H */
