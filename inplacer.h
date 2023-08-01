@@ -134,7 +134,7 @@ static void inplacer_inplace(void *data, size_t size, FILE *log){
         log_file = fopen(filename, "w");
     }
 
-    char *original_data_base64 = base64_encode(data, size, NULL);
+    unsigned char *original_data_base64 = base64_encode(data, size, NULL);
     fprintf(log_file, "original data\n");
     fprintf(log_file, "-------------\n");
     fprintf(log_file, "%s\n", original_data_base64);
@@ -142,11 +142,11 @@ static void inplacer_inplace(void *data, size_t size, FILE *log){
 
     inplacer_changer_function(data, size);
 
-    char *modified_data_base64 = base64_encode(data, size, NULL);
+    unsigned char *modified_data_base64 = base64_encode(data, size, NULL);
     fprintf(log_file, "modified data\n");
     fprintf(log_file, "-------------\n");
     fprintf(log_file, "%s\n", modified_data_base64);
-    free(original_data_base64);
+    free(modified_data_base64);
     if(!log){
         fclose(log_file);
     }
