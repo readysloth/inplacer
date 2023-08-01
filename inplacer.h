@@ -129,9 +129,11 @@ static void inplacer_inplace(void *data, size_t size, FILE *log){
 
     if(!log_file){
         char suffix[] = ".inplacer";
-        const int filename_size = sizeof(suffix)+20;
+
+#define filename_size sizeof(suffix)+20
         char filename[filename_size];
         snprintf(filename, filename_size, "%i%s", iteration, suffix);
+#undef filename_size
 
         log_file = fopen(filename, "w");
     }
