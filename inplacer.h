@@ -110,15 +110,19 @@ static void inplacer_inplace(void *data, size_t size, FILE *log){
     static int iteration = 0;
 
     iteration++;
-    char *inplacer_skip = getenv("INPLACER_SKIP_N");
 
+    char *inplacer_skip = getenv("INPLACER_SKIP_N");
     if(inplacer_skip && iteration < atoi(inplacer_skip)){
         return;
     }
 
     char *inplacer_skip_every = getenv("INPLACER_SKIP_EVERY");
-
     if(inplacer_skip_every && (iteration % atoi(inplacer_skip_every)) == 0){
+        return;
+    }
+
+    char *inplacer_fuzz_only = getenv("INPLACER_FUZZ_ONLY");
+    if(inplacer_fuzz_only && (iteration % atoi(inplacer_fuzz_only)) != 0){
         return;
     }
 
