@@ -116,6 +116,12 @@ static void inplacer_inplace(void *data, size_t size, FILE *log){
         return;
     }
 
+    char *inplacer_skip_every = getenv("INPLACER_SKIP_EVERY");
+
+    if(inplacer_skip_every && (iteration % atoi(inplacer_skip_every)) == 0){
+        return;
+    }
+
     if(!initialized && inplacer_init_function){
         inplacer_init_function();
         initialized = true;
