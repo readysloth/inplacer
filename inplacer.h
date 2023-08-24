@@ -147,6 +147,10 @@ static void inplacer_inplace(void *data, size_t size, FILE *log){
     unsigned char *original_data_base64 = base64_encode(data, size, NULL);
     fprintf(log_file, "original data\n");
     fprintf(log_file, "-------------\n");
+    if(!original_data_base64){
+        fprintf(log_file, "[malloc() failed during base64_encode!]\n");
+        return;
+    }
     fprintf(log_file, "%s\n", original_data_base64);
     free(original_data_base64);
 
@@ -156,6 +160,10 @@ static void inplacer_inplace(void *data, size_t size, FILE *log){
     fprintf(log_file, "modified data\n");
     fprintf(log_file, "-------------\n");
     fprintf(log_file, "%s\n", modified_data_base64);
+    if(!modified_data_base64){
+        fprintf(log_file, "[malloc() failed during base64_encode!]\n");
+        return;
+    }
     free(modified_data_base64);
     if(!log){
         fclose(log_file);
